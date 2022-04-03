@@ -63,6 +63,8 @@ public class Estrutura {
         }while(!setouNome);
         //Cria novo objeto jogador com o nome
         jogador = new Jogador(nome);
+        cabecalho("ESSE É SEU PERSONAGEM");
+        informacoesPersonagem();
         
         Historia.Introducao();
         

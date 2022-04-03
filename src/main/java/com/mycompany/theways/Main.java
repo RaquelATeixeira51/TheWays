@@ -11,6 +11,5 @@ package com.mycompany.theways;
 public class Main {
     public static void main(String[] args){
         Estrutura.startaGame();
-        Estrutura.informacoesPersonagem();
     }
 }
