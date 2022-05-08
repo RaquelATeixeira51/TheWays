@@ -36,7 +36,7 @@ public class Main {
         
         public static void separador(int numero){
             for(int i = 0; i < numero; i++){
-                System.out.println("---------------------------");
+                System.out.println("------------------------------------------------");
                 System.out.println("");
             }
         }
@@ -75,11 +75,11 @@ public class Main {
             Historia.Introducao();
             
             if(jogador.nome.equals("Thomas")){
-                Historia.Futuro();
+                Futuro.PrimeiroAto();
             } else if (jogador.nome.equals("Alex")){
-                Historia.Passado();
+                Passado.PrimeiroAto();
             } else {
-                Historia.Presente();
+                Presente.PrimeiroAto();
             }
             
         }
@@ -162,30 +162,14 @@ public class Main {
         }
         
     }
-    
-    public static abstract class Personagens {
-    
-        //Atributos dos personagens 
-        /*
-         *hp = hitpoints pontos de ataque, bateu levou
-         *xp = experiencepoints experiencia
-         */
-         public String nome;
-         public int hp,xp,it;
-         
-         //Construtor para o personagem
-         public Personagens(int xp, int hp){
-             this.nome = nome;
-             this.hp = hp;
-             this.xp = xp;
-         }
-         
-         
-     }
      
-     public static class Jogador extends Personagens{
+     public static class Jogador{
+        public static String nome;
         //variáveis para armazenar atributos de defesa e ataque
         public int numAtaAtibutos, numDefAtributos, numIntAtributos, numPespAtributos;
+        public static int hp = 150;
+        public static int xp = 100;
+
         
         //Array pra armazenar características do personagem
         public String[] Thomas = {"Thomas ", "Experiente ", "Inteligente ", "Teimoso ", "Bom de lábia "};
@@ -194,7 +178,6 @@ public class Main {
         
         //construtor do jogador
         public Jogador(String nome){
-            super(100, 150);
             //Setando numero de atributos para 0
             this.numAtaAtibutos = 0;
             this.numDefAtributos = 0;
@@ -249,20 +232,48 @@ public class Main {
             System.out.println("Era madrugada do dia " + diaHoje +" o céu estava escuro pela lua coberta pelas nuvens. Um velho estava sentado em seu laboratório numa poça de café. Ele estava cansado, tentando raciocinar formas de solucionar as questões do espaço tempo. Porém, em um momento de frustração, ele desconta sua raiva em sua máquina do tempo que a anos não funciona, e de repente a máquina atrai tudo na sala inclusive Thomas para seu interior.");
             Estrutura.qualquerCoisaParaContinuar();
         }
-        
-        public static void Passado(){
+
+        public static void Final(){
+            Estrutura.cabecalho("THE END");
+            System.out.println("Thomas se encontra em seu laboratório novamente, porém por conta de todo ocorrido dos últimos tempos, sua memória acabou se fragmentando fazendo-o esquecer de algumas coisas.\nHugo adentra seu local de trabalho feliz por finalmente ter reencontrado seu avô, e emocionado pergunta sobre sua mãe adotiva “Vô, onde está mamãe?”\nThomas um pouco confuso responde “Sua mãe não está mais entre nós a um tempo…”\nE Hugo rebate:  “Estou falando a Alex…”\nE por fim Thomas devolve a pergunta: “Quem é Alex?”");
+        }
+    }
+
+    public class Presente {
+        public static void PrimeiroAto(){
+            Estrutura.cabecalho("PRIMEIRO ATO");
+            Estrutura.cabecalho("CENÁRIO ATUAL");
+            System.out.println("você está no presente");
+            Estrutura.qualquerCoisaParaContinuar();
+            SegundoAto();
+        }
+
+        public static void SegundoAto(){
+            Estrutura.cabecalho("SEGUNDO ATO");
+            Estrutura.qualquerCoisaParaContinuar();
+            TerceiroAto();
+        }
+
+        public static void TerceiroAto(){
+            Estrutura.cabecalho("TERCEIRO ATO");
+            Estrutura.qualquerCoisaParaContinuar();
+            Historia.Final();
+        }
+    }
+
+    public class Passado {
+        public static void PrimeiroAto(){
+            Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
             System.out.println("você está no passado");
         }
-        public static void Presente(){
-            Estrutura.cabecalho("CENÁRIO ATUAL");
-            System.out.println("você está no presente");
-        }
-        public static void Futuro(){
+    }
+
+    public class Futuro {
+        public static void PrimeiroAto(){
+            Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
             System.out.println("você está no futuro");
         }
     }
-    
-    
 }
