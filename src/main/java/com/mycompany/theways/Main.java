@@ -274,6 +274,10 @@ public class Main {
         //Escolhas dos usuários
         public static void decisao1_1(){
 
+            int contador = 0;
+
+
+            while (contador <= 2){
                 System.out.println ("--------------------------");
                 System.out.println ("(1) - Aceitar a ajuda");
                 System.out.println ("(2) - Recusar ajuda");
@@ -286,6 +290,9 @@ public class Main {
                         System.out.println ("Agradeço sua ajuda, mas devo continuar sozinho");
                         System.out.println ("----------------------------------------------");
                         System.out.println ("\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
+                        Estrutura.qualquerCoisaParaContinuar();
+                        contador = 3;
+                        
     
                     }
     
@@ -294,16 +301,26 @@ public class Main {
                         System.out.println ("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
                         System.out.println ("\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao tempo espaço ...");
                         GamerOver();
+                        contador = 3;
     
                     }
+
+                    else {
+                        System.out.println ("Valor inválido. Por favor, digite novamente.");
+                        contador = 1;
+                    }
+                contador ++;
+            }
+                
                 
         }
 
         public static void decisao1_2(){
             System.out.println ("\nA criança mostra que era apenas um holograma, assim vejo aquele pequeno garoto se transformar em sua real forma, na qual surge um homem alto com uma arma em sua cintura vestindo um terno preto com uma logo em seu peito.");
            
-          
-    
+          int contador = 0;
+
+          while (contador <= 2){
             Scanner input = new Scanner(System.in);
             System.out.println ("--------- O que farei?--------- ");
             System.out.println ("1 - Corro do agente mesmo sabendo das minhas condições físicas?");
@@ -316,6 +333,7 @@ public class Main {
             switch(escolha1){
                 case 1:
                 System.out.println ("\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
+                contador = 3;
                 GamerOver();
                 break;
 
@@ -329,17 +347,23 @@ public class Main {
 
                 System.out.println ("\nMais veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
                 GamerOver();
+                contador = 3;
                 break;
 
                 case 3:
                 System.out.println ("\nConsigo despistar o agente e após conseguir uma certa distância de nosso último local de encontro começo a procurar onde estaria o meu laboratório...");
+                contador = 3;
                 break;
             
                 default:
-                System.out.println ("\nValor invalido.");
-                GamerOver();
+                System.out.println ("Valor invalido. Por favor, digite novamente");
+                contador = 1;
             }       
        
+
+          }
+    
+            
 
         }
 
@@ -415,7 +439,18 @@ public class Main {
         public static void TerceiroAto(){
             Estrutura.cabecalho("TERCEIRO ATO");
             Estrutura.qualquerCoisaParaContinuar();
+
+            //inicio fase 03
+            System.out.println ("Finalmente entro em meu laboratório e noto algumas diferenças. Um grande buraco de minhoca está estabilizado na máquina do tempo. Reparo que os agentes estavam utilizando a máquina que criei como um artifício para viajar no tempo como se fosse propriedade deles, isso me enoja.\nComeço a ouvir barulhos de passos próximos a mim. Olho ao redor e sinto a presença próxima dos agentes.");
+
+            //Decisão 04
+
+
+            //Sistema de combate
+
             Historia.Final();
+
+          
         }
 
 
