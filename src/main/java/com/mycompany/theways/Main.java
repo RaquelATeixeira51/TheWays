@@ -270,6 +270,73 @@ public class Main {
     }
 
     public class Futuro {
+
+        //Escolhas dos usuários
+        public static void decisao1_1(){
+
+                System.out.println ("--------------------------");
+                System.out.println ("(1) - Aceitar a ajuda");
+                System.out.println ("(2) - Recusar ajuda");
+                System.out.println ("--------------------------");
+                System.out.print ("Aceita a ajuda da criança? ");
+                
+        }
+
+        public static void decisao1_2(){
+            int x = 0;
+            System.out.println ("\nA criança mostra que era apenas um holograma, assim vejo aquele pequeno garoto se transformar em sua real forma, na qual surge um homem alto com uma arma em sua cintura vestindo um terno preto com uma logo em seu peito.");
+           
+            do{
+            
+    
+            Scanner input = new Scanner(System.in);
+            System.out.println ("--------- O que farei?--------- ");
+            System.out.println ("1 - Corro do agente mesmo sabendo das minhas condições físicas?");
+            System.out.println ("2 - Decido enfrentar o agente?");
+            System.out.println ("3 - Deve me camuflar na multidão?");
+            System.out.println ("-------------------------------");
+            System.out.println ("Qual é a sua escolha? ");
+            int escolha1 = input.nextInt();
+
+            switch(escolha1){
+                case 1:
+                System.out.println ("\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
+                GamerOver();
+                x = 2;
+                break;
+
+
+                case 2:
+                System.out.println ("\nPor um momento de coragem decido que está na hora de enfrentar o adversário. Observo seus movimentos com atenção, a fim de descobrir os motivos da perseguição, então o questiono:");
+
+                System.out.println ("\n - O que eu fiz para você? Não me recordo de conhecê-lo. O agente expressa uma risada sarcástica em seu rosto como se esperasse por isso");
+
+                System.out.println ("\n- Você causou diversos problemas com a sua invenção, destruiu até mesmo sua família. Você é literalmente uma bomba relógio que deve ser desativada o quanto antes. Por isso estou aqui, para acabar com os problemas da sociedade.");
+
+                System.out.println ("\nMais veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
+                GamerOver();
+                x = 2;
+                break;
+
+                case 3:
+                System.out.println ("\nConsigo despistar o agente e após conseguir uma certa distância de nosso último local de encontro começo a procurar onde estaria o meu laboratório...");
+                x = 1;
+                break;
+            
+                default:
+                System.out.println ("\nValor invalido. Por favor, digite novamente.");
+            }       
+        } while(x == 2);
+
+        }
+
+        public static void GamerOver(){
+            System.out.println ("GAMER OVER!!");
+            Estrutura.qualquerCoisaParaContinuar();
+            Estrutura.menuPrincipal();
+
+        }
+
         public static void PrimeiroAto(){
             Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
@@ -298,45 +365,34 @@ public class Main {
             System.out.println ("\n - Boa tarde, senhor! Gostaria de ajuda para conhecer a cidade? - A criança que me chamava tinha voz doce e sorriso contagiante, lembrava muito o meu bisneto.\n - Bem, acredito que não precise de ajuda. - É claro que eu necessitava  de ajuda, não conhecia nada do lugar que eu estava,  mas pedi ajuda de uma criança não parecia ser a escolha mais viável.\nA criança me olhou de cima a baixo, como se soubesse que eu era um velho louco perdido na cidade grande. Quando terminou de examinar meu rosto, retrucou:\n -Eu tenho certeza que você precisa de ajuda. Olha para suas roupas estranhas! Fora  que desde de que você chegou está aí parado olhando para tudo. Posso te levar pela cidade se deseja, ainda te mostro um lugar para você comprar roupas novas.");
             
 
-            //Decisão do usuário 01
-            int x = 0;
-
-            do {
-
+            //Decisão do usuário 01 (Em tratamento)
+               
+                
+                decisao1_1();
                 Scanner entrada = new Scanner(System.in);
-
-                System.out.println ("--------------------------");
-                System.out.println ("(1) - Aceitar a ajuda");
-                System.out.println ("(2) - Recusar ajuda");
-                System.out.println ("--------------------------");
-                System.out.print ("Aceita a ajuda da criança? ");
                 int ajuda = entrada.nextInt();
 
-                switch(ajuda){
-                    case 1:
-                    System.out.println ("Ok, aceito sua ajuda.");
-                    System.out.println ("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
-                    System.out.println ("\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao tempo espaço ...");
-
-                    x = 2;
-                    break;
-
-
-                    case 2:
-                    System.out.println ("Agradeço sua ajuda, mas devo continuar sozinho");
-                    System.out.println ("----------------------------------------------");
-                    System.out.println ("\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
-                    x = 1;
-                    break;
-                    
-                    default:
-                    System.out.println ("\nValor invalido. Por favor, digite novamente.");
-
-                }
-
-            } while(x == 2);
-
-
+                    if (ajuda == 2){
+                        System.out.println ("Agradeço sua ajuda, mas devo continuar sozinho");
+                        System.out.println ("----------------------------------------------");
+                        System.out.println ("\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
+    
+                    }
+    
+                    else if (ajuda == 1){
+                        System.out.println ("Ok, aceito sua ajuda.");
+                        System.out.println ("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
+                        System.out.println ("\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao tempo espaço ...");
+                        GamerOver();
+    
+                    }
+    
+                    else {
+                        System.out.println("Informação inválida!");
+                        decisao1_1();
+                        
+                    }
+                       
             //Loja de itens
             
             System.out.println ("Caminho pelas ruas da cidade até encontrar algo que fosse interessante e me deparo com uma loja de itens. Entro em busca de itens que possam ajudar na minha trajetória pela cidade futurista.");
@@ -345,67 +401,18 @@ public class Main {
             System.out.println ("1 - Roupa nova");
             System.out.println ("2 - Aparelho eletrônico  desconhecido");
             System.out.println ("3 - Alimentos para viagem");
-            System.out.println ("---------------------------");
-            System.out.println ("Informe um valor: ");
-            //int escolha = entrada.nextInt();
-            Estrutura.qualquerCoisaParaContinuar();
+            System.out.println ("--------------------------------------------");
 
             System.out.println ("\nApós escolher os itens, percebo um pequeno detalhe… Estou sem dinheiro. Levando em consideração minha atual situação, não tenho escolha senão roubar os itens da loja e sair o mais rápido possível.\nMe escondo para que ninguém perceba o furto que acabo de cometer. Ao encontrar um lugar seguro, noto que estou sendo observado. Aquela mesma criança de manhã cedo estava me olhando do outro lado da rua, seus olhos ficam fibrados em cada movimento que eu possa fazer. Em meio ao desespero reparo o perigo, aquele jovem não queria apenas fazer companhia");
 
             //Decisão 02
-
-            System.out.println ("\nA criança mostra que era apenas um holograma, assim vejo aquele pequeno garoto se transformar em sua real forma, na qual surge um homem alto com uma arma em sua cintura vestindo um terno preto com uma logo em seu peito.");
-           
-            do{
+            decisao1_2();
             
-            Scanner entrada = new Scanner(System.in);
-            System.out.println ("------- O que farei?------- ");
-            System.out.println ("1 - Corro do agente mesmo sabendo das minhas condições físicas?");
-            System.out.println ("2 - Decido enfrentar o agente?");
-            System.out.println ("3 - Deve me camuflar na multidão?");
-            System.out.println ("---------------------------");
-            System.out.println ("Qual é a sua escolha? ");
-            int escolha = entrada.nextInt();
 
-
-            switch(escolha){
-                case 1:
-                System.out.println ("\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
-                x = 2;
-                break;
-
-
-                case 2:
-                System.out.println ("\nPor um momento de coragem decido que está na hora de enfrentar o adversário. Observo seus movimentos com atenção, a fim de descobrir os motivos da perseguição, então o questiono:");
-
-                System.out.println ("\n - O que eu fiz para você? Não me recordo de conhecê-lo. O agente expressa uma risada sarcástica em seu rosto como se esperasse por isso");
-
-                System.out.println ("\n- Você causou diversos problemas com a sua invenção, destruiu até mesmo sua família. Você é literalmente uma bomba relógio que deve ser desativada o quanto antes. Por isso estou aqui, para acabar com os problemas da sociedade.");
-
-                System.out.println ("\nMas veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
-
-                x = 2;
-                break;
-
-                case 3:
-                System.out.println ("\nConsigo despistar o agente e após conseguir uma certa distância de nosso último local de encontro começo a procurar onde estaria o meu laboratório...");
-                x = 1;
-                break;
-
-                
-                default:
-                System.out.println ("\nValor invalido. Por favor, digite novamente.");
-
-            }       
-
-    } while(x == 2);
-
-    Estrutura.qualquerCoisaParaContinuar();
-
-
-            SegundoAto();
-            
+            Estrutura.qualquerCoisaParaContinuar();
+            SegundoAto();       
         }
+
 
         public static void SegundoAto(){
             Estrutura.cabecalho("SEGUNDO ATO");
