@@ -279,15 +279,30 @@ public class Main {
                 System.out.println ("(2) - Recusar ajuda");
                 System.out.println ("--------------------------");
                 System.out.print ("Aceita a ajuda da criança? ");
+                Scanner entrada = new Scanner(System.in);
+                int ajuda = entrada.nextInt();
+
+                    if (ajuda == 2){
+                        System.out.println ("Agradeço sua ajuda, mas devo continuar sozinho");
+                        System.out.println ("----------------------------------------------");
+                        System.out.println ("\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
+    
+                    }
+    
+                    else if (ajuda == 1){
+                        System.out.println ("Ok, aceito sua ajuda.");
+                        System.out.println ("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
+                        System.out.println ("\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao tempo espaço ...");
+                        GamerOver();
+    
+                    }
                 
         }
 
         public static void decisao1_2(){
-            int x = 0;
             System.out.println ("\nA criança mostra que era apenas um holograma, assim vejo aquele pequeno garoto se transformar em sua real forma, na qual surge um homem alto com uma arma em sua cintura vestindo um terno preto com uma logo em seu peito.");
            
-            do{
-            
+          
     
             Scanner input = new Scanner(System.in);
             System.out.println ("--------- O que farei?--------- ");
@@ -302,7 +317,6 @@ public class Main {
                 case 1:
                 System.out.println ("\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
                 GamerOver();
-                x = 2;
                 break;
 
 
@@ -315,20 +329,23 @@ public class Main {
 
                 System.out.println ("\nMais veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
                 GamerOver();
-                x = 2;
                 break;
 
                 case 3:
                 System.out.println ("\nConsigo despistar o agente e após conseguir uma certa distância de nosso último local de encontro começo a procurar onde estaria o meu laboratório...");
-                x = 1;
                 break;
             
                 default:
-                System.out.println ("\nValor invalido. Por favor, digite novamente.");
+                System.out.println ("\nValor invalido.");
+                GamerOver();
             }       
-        } while(x == 2);
+       
 
         }
+
+        public static void decisao2_1(){}
+
+        public static void decisao2_2(){}
 
         public static void GamerOver(){
             System.out.println ("GAMER OVER!!");
@@ -366,32 +383,7 @@ public class Main {
             
 
             //Decisão do usuário 01 (Em tratamento)
-               
-                
-                decisao1_1();
-                Scanner entrada = new Scanner(System.in);
-                int ajuda = entrada.nextInt();
-
-                    if (ajuda == 2){
-                        System.out.println ("Agradeço sua ajuda, mas devo continuar sozinho");
-                        System.out.println ("----------------------------------------------");
-                        System.out.println ("\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
-    
-                    }
-    
-                    else if (ajuda == 1){
-                        System.out.println ("Ok, aceito sua ajuda.");
-                        System.out.println ("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
-                        System.out.println ("\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao tempo espaço ...");
-                        GamerOver();
-    
-                    }
-    
-                    else {
-                        System.out.println("Informação inválida!");
-                        decisao1_1();
-                        
-                    }
+            decisao1_1();
                        
             //Loja de itens
             
