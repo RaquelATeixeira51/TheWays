@@ -496,7 +496,43 @@ public class Main {
             }
 
         }
-        public static void CombateFinal(){}
+        public static void CombateFinal(){
+            System.out.println("Deparo com três agentes do tempo e mais para frente noto uma arma que se assemelha a um blaster. Impossível não lembrar das referências pop dos anos 80. Corro em direção ao armamento com a intenção de atingir meus adversários. Consigo pegar o blaster a tempo e sinto um dos agentes referindo um ataque em minhas costas. ");
+
+            System.out.println ("O que devo fazer?");
+            System.out.println ("1 - Revido dando um soco no agente e saio correndo.\n 2 - Tento dar um tiro de blaster.\n 3 -  Tento enfrentá los todos de uma vez");
+            int opcao = Estrutura.leiaInput("->", 3);
+
+
+            int dano = 0;
+
+            //Danos 01
+            if(opcao == 1 || opcao == 01){
+                System.out.println ("sofro um certo dano, mas consigo aguentar.");
+
+                dano = Jogador.hp - 50;
+                System.out.println("TOTAL: " + dano + " HP");
+
+            }
+
+            else if ( opcao == 02 || opcao == 2 ){
+                System.out.println ("Consequência:  porém, ele está muito perto e me atingi também.");
+                dano = Jogador.hp - 75;
+                System.out.println("TOTAL: " + dano + " HP");
+            }
+
+            else if ( opcao == 3  || opcao == 03 ) {
+                System.out.println ("Consequência: A morte total de Thomas. Ele não tem condicionamento físico o suficiente.");
+                dano = Jogador.hp - 150;
+                GamerOver();
+
+            }
+
+            System.out.println(Jogador.hp);
+
+
+            //Dano 02
+        }
 
         public static void GamerOver(){
             System.out.println ("GAMER OVER!!");
@@ -533,7 +569,7 @@ public class Main {
             System.out.println ("\n - Boa tarde, senhor! Gostaria de ajuda para conhecer a cidade? - A criança que me chamava tinha voz doce e sorriso contagiante, lembrava muito o meu bisneto.\n - Bem, acredito que não precise de ajuda. - É claro que eu necessitava  de ajuda, não conhecia nada do lugar que eu estava,  mas pedir ajuda de uma criança não parecia ser a escolha mais viável.\nA criança me olhou de cima a baixo, como se soubesse que eu era um velho louco perdido na cidade grande. Quando terminou de examinar meu rosto, retrucou:\n -Eu tenho certeza que você precisa de ajuda. Olha para suas roupas estranhas! Fora  que desde de que você chegou está aí parado olhando para tudo. Posso te levar pela cidade se deseja, ainda te mostro um lugar para você comprar roupas novas.");
             
 
-            //Decisão do usuário 01 (Em tratamento)
+            //Decisão do usuário 01 
             decisao1_1();
                        
             //Loja de itens
@@ -580,17 +616,24 @@ public class Main {
             //inicio fase 03
             System.out.println ("Finalmente entro em meu laboratório e noto algumas diferenças. Um grande buraco de minhoca está estabilizado na máquina do tempo. Reparo que os agentes estavam utilizando a máquina que criei como um artifício para viajar no tempo como se fosse propriedade deles, isso me enoja.\nComeço a ouvir barulhos de passos próximos a mim. Olho ao redor e sinto a presença próxima dos agentes.");
 
+            Estrutura.qualquerCoisaParaContinuar();
+
             //Decisão 04
             decisao3_1();
 
 
             //Sistema de combate
+            CombateFinal();
+
+            Estrutura.qualquerCoisaParaContinuar();
 
             Historia.Final();
 
           
-        }
-
-
+       
     }
+            
+
+}
+
 }
