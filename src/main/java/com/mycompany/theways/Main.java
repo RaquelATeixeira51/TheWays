@@ -280,6 +280,7 @@ public class Main {
 
         public static void SegundoAto() {
             Estrutura.cabecalho("SEGUNDO ATO");
+            System.out.println("Ao se esconder embaixo da mesa, Hugo ouve sobre o ocorrido de dias atrás com seu bisavô e sua tia.");
             Estrutura.qualquerCoisaParaContinuar();
             TerceiroAto();
         }
