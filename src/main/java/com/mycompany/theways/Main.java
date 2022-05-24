@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
-        Presente.PrimeiroAto();
+        Estrutura.startaGame();
     }
 
     public static class Estrutura {
@@ -237,8 +237,7 @@ public class Main {
 
         public static void Final() {
             Estrutura.cabecalho("THE END");
-            System.out.println(
-                    "Thomas se encontra em seu laboratório novamente, porém, por conta de todo ocorrido dos últimos tempos, sua memória acabou se fragmentando fazendo-o esquecer de algumas coisas.\nHugo adentra seu local de trabalho feliz por finalmente ter reencontrado seu avô, e emocionado pergunta sobre sua mãe adotiva “Vô, onde está mamãe?”\nThomas um pouco confuso responde “Sua mãe não está mais entre nós a um tempo…”\nE Hugo rebate:  “Estou falando a Alex…”\nE por fim Thomas devolve a pergunta: “Quem é Alex?”");
+            System.out.println("Thomas se encontra em seu laboratório novamente, porém, por conta de todo ocorrido dos últimos tempos, sua memória acabou se fragmentando fazendo-o esquecer de algumas coisas.\nHugo adentra seu local de trabalho feliz por finalmente ter reencontrado seu avô, e emocionado pergunta sobre sua mãe adotiva: Vô, onde está mamãe?\nThomas um pouco confuso responde: Sua mãe não está mais entre nós a um tempo...\nE Hugo rebate: Estou falando a Alex... \nE por fim Thomas devolve a pergunta: Quem é Alex?");
         }
     }
 
@@ -268,11 +267,13 @@ public class Main {
                         case 1:
                         SegundoAto();
                         jogoSegue=true;
+                        break;
                         case 2:
                         System.out.println("Tento brigar com os agentes, mas por minha pouca força acabo sendo pego e me levam embora.\nGAME OVER.");
                         break;
                         case 3:
                         System.out.println("Tento conversar com os agentes sobre o desaparecimento de minha família, mas acabam me levando para um intenso interrogatório.\nGAME OVER.");
+                        break;
                 }
                 
             }
@@ -280,8 +281,8 @@ public class Main {
 
         public static void SegundoAto() {
             Estrutura.cabecalho("SEGUNDO ATO");
-            System.out.println("Ao me esconder embaixo da mesa, ouço sobre o ocorrido de dias atrás com meu bisavô e minha tia.\n\n Agente 1:  “Nunca vi nada desse tipo…” \n\n Agente 2 : “Todos os radares de energia dispararam!” \n\n Agente 3: “Ficaram sabendo? Um dos procurados foi para o futuro e outro para o passado.” \n\n");
-            System.out.println("Chefe do FBI: “Agentes, isso não pode sair deste laboratório. Os agentes do tempo já estão atrás dos responsáveis. Vamos aguardar e ver se achamos alguma evidência do que ocorreu aqui.”");
+            System.out.println("Ao me esconder embaixo da mesa, ouço sobre o ocorrido de dias atrás com meu bisavô e minha tia.\n\n Agente 1:  Nunca vi nada desse tipo... \n\n Agente 2 : Todos os radares de energia dispararam! \n\n Agente 3: Ficaram sabendo? Um dos procurados foi para o futuro e outro para o passado. \n\n");
+            System.out.println("Chefe do FBI: Agentes, isso não pode sair deste laboratório. Os agentes do tempo já estão atrás dos responsáveis. Vamos aguardar e ver se achamos alguma evidência do que ocorreu aqui.");
             Estrutura.qualquerCoisaParaContinuar();
             System.out.println("Ao perceber que os agentes irão vasculhar o local, preciso rapidamente pensar em como fugir sem ser pego.");
             boolean jogoSegue=false;
@@ -297,12 +298,14 @@ public class Main {
                 switch(input){
                     case 1:
                     System.out.println("Infelizmente você não era rápido como pensava, haviam muitos agentes e conseguiram te capturar.\nGAME OVER.");
+                    break;
                     case 2:
                     System.out.println("O tiro saiu pela culatra! Hugo não foi sorrateiro o suficiente ao pegar a arma do agente, e em um momento de susto o agente saca a arma e atira nele.\nGAME OVER.");
                     break;
                     case 3:
                     TerceiroAto();
                     jogoSegue=true;
+                    break;
                 }
             }
         }
@@ -326,14 +329,19 @@ public class Main {
                 switch(input){
                     case 1:
                     System.out.println("Apesar de querer encontrar muito minha tia, eu não sabia se ficava aliviado ou desesperado por não conter nada sobre ela no livro. Infelizmente continuo sem pistas e desisto da busca.\nGAME OVER.");
+                    break;
                     case 2:
-                    jogoSegue=true; 
+                    jogoSegue=true;
+                    break; 
                     case 3:
                     System.out.println("Apesar de minha tia ter o perfil para se encaixar naquele livro com facilidade, não havia nada sobre ela. Continuo sem pistas e cansado acabo desistindo da procura.\nGAME OVER.");
+                    break;
                 }
             }
            
             System.out.println("Apesar da pista encontrada, o final do livro não continha o destino daquela mulher, então decido voltar ao laboratório e procurar pistas sobre minha mãe adotiva.\nAo chegar na rua do laboratório, percebo que a entrada pela qual entrei da primeira vez estava repleta de agentes.\n\nEnquanto pensava no que fazer, percebo alguém em minha frente me puxando pelo pescoço");
+
+
             boolean jogoSegue2=false;
 
             while(!jogoSegue2){
@@ -347,12 +355,16 @@ public class Main {
                 switch(input){
                     case 1:
                     System.out.println("Acerto o rosto do agente porém não forte o suficiente para fazer ele me soltar.\nGAME OVER.");
+                    break;
                     case 2:
                     System.out.println("Assim que consigo me desvencilhar do agente, corri para o bueiro pelo qual saíra da última vez.\nEnquanto caminho pelos esgotos, me questiono sobre o que poderia encontrar.\nAlgo estaria diferente? Estaria tudo igual?");
                     jogoSegue2=true;
+                    Estrutura.qualquerCoisaParaContinuar();
                     Historia.Final();
+                    break;
                     case 3:
                     System.out.println("Me debato e tento soltar os dedos do agente que estavam em meu pescoço, mas ele era muito forte.\nGAME OVER.");
+                    break;
                 }
             }
         }
