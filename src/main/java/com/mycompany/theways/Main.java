@@ -532,6 +532,46 @@ public class Main {
 
 
             //Dano 02
+
+            System.out.println("Em uma distância segura, atiro em direção aos agentes. Consigo acertar dois deles e um vem correndo em minha direção. Pego uma cadeira como escudo e revido aos seus ataques, porém, ele é muito forte e me derruba no chão. Tento levantar rápido, mas ele continua batendo. Descubro então uma solução, aproveito sua distração momentânea e jogo o balde de tinta nele.");
+
+
+            System.out.println("O que devo fazer?");
+            System.out.println(" 1 - Aproveito seu estresse e bato com o blaster na sua cabeça");
+            System.out.println(" 2 -  Tento dar um tiro de blaster");
+            System.out.println(" 3 - Thomas sobrecarrega o blaster e o joga como uma bomba.");
+            int opcao2 = Estrutura.leiaInput("->", 3);
+
+            if(opcao2 == 1 || opcao2 == 01){
+                dano = Jogador.hp - 75;
+
+                if(dano == 0){
+                    GamerOver();
+                }
+            }
+
+
+            else if(opcao2 == 02 || opcao2 == 2){
+                dano = Jogador.hp - 25;
+
+                if(dano == 0){
+                    GamerOver();
+                }
+
+            }
+
+            else if (opcao2 == 03 || opcao2 == 3){
+                dano = Jogador.hp - 49;
+
+                if(dano == 0){
+                    GamerOver();
+                }
+
+            }
+
+            Estrutura.qualquerCoisaParaContinuar();
+            
+
         }
 
         public static void GamerOver(){
