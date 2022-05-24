@@ -652,8 +652,6 @@ public class Main {
 
             System.out.println(Jogador.hp);
 
-<<<<<<< HEAD
-
             //Dano 02
 
             System.out.println("Em uma distância segura, atiro em direção aos agentes. Consigo acertar dois deles e um vem correndo em minha direção. Pego uma cadeira como escudo e revido aos seus ataques, porém, ele é muito forte e me derruba no chão. Tento levantar rápido, mas ele continua batendo. Descubro então uma solução, aproveito sua distração momentânea e jogo o balde de tinta nele.");
@@ -695,9 +693,8 @@ public class Main {
             Estrutura.qualquerCoisaParaContinuar();
             
 
-=======
-            // Dano 02
->>>>>>> eeddc8367f5dac31bfb94669b84bafa3bb39c0ed
+            
+
         }
 
         public static void GamerOver() {
@@ -794,6 +791,9 @@ public class Main {
 
             // Sistema de combate
             CombateFinal();
+
+            //Final história
+            System.out.println ("Finalmente em “paz” leio minhas anotações. Percebo onde estava errando esse tempo todo: Havia esquecido uma vincular na conta. Se fosse em outros tempos com certeza ficaria revoltado, mas neste momento estou feliz de encontrar uma solução para tratar meu problema.\nApós ligar, entro na máquina com um sorriso no rosto. Logo estaria com a minha família, veria Hugo e Alex após muito tempo. Quem sabe agora teria tempo para viajar com eles e conhecer o mundo inteiro. Poderia ver a evolução dos dois em meus últimos dias de vida…\nDe repente sinto minha cabeça doendo, seria apenas uma consequência da viajar? Essa dor se intensifica até que eu durma.\nAcordo no outro dia com meu bisneto chamado… Ele repetia várias vezes de uma moça chamada Alex. Nunca conheci alguém com esse nome. Deixo ele falando e vou até meu laboratório, preciso fazer minha máquina do tempo funcionar.");
 
             Estrutura.qualquerCoisaParaContinuar();
 
