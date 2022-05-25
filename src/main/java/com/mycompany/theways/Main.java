@@ -583,8 +583,7 @@ public class Main {
         // Escolhas dos usuários fase 03
         public static void decisao3_1() {
             Scanner entrada = new Scanner(System.in);
-            System.out.println(
-                    "Fecho a porta do laboratório e empurro um armário com toda a força que o me resta, enquanto tento descobrir como voltar para o tempo e arrumar tudo.");
+            System.out.println("Fecho a porta do laboratório e empurro um armário com toda a força que o me resta, enquanto tento descobrir como voltar para o tempo e arrumar tudo.");
 
             System.out.println("O que ele deve fazer?");
             System.out.println("1 - Combate direto");
@@ -626,6 +625,7 @@ public class Main {
             int opcao = Estrutura.leiaInput("->", 3);
 
             int dano = 0;
+            int dano2 = 0;
 
             // Danos 01
             if (opcao == 1 || opcao == 01) {
@@ -639,6 +639,7 @@ public class Main {
             else if (opcao == 02 || opcao == 2) {
                 System.out.println("Consequência:  porém, ele está muito perto e me atingi também.");
                 dano = Jogador.hp - 75;
+                
                 System.out.println("TOTAL: " + dano + " HP");
             }
 
@@ -650,7 +651,7 @@ public class Main {
 
             }
 
-            System.out.println(Jogador.hp);
+            
 
             //Dano 02
 
@@ -658,23 +659,28 @@ public class Main {
 
 
             System.out.println("O que devo fazer?");
-            System.out.println(" 1 - Aproveito seu estresse e bato com o blaster na sua cabeça");
-            System.out.println(" 2 -  Tento dar um tiro de blaster");
-            System.out.println(" 3 - Thomas sobrecarrega o blaster e o joga como uma bomba.");
+            System.out.println(" (1) Aproveito seu estresse e bato com o blaster na sua cabeça");
+            System.out.println(" (2) Tento dar um tiro de blaster");
+            System.out.println(" (3) Thomas sobrecarrega o blaster e o joga como uma bomba.");
             int opcao2 = Estrutura.leiaInput("->", 3);
 
             if(opcao2 == 1 || opcao2 == 01){
-                dano = Jogador.hp - 75;
-
-                if(dano == 0){
+                dano2 = dano - 75;
+                System.out.println("Consequência Thomas é brilhante mas não tem tanta"
+                        + " força, logo seu ataque não faz quase dano nenhum ao agente.");
+                System.out.println("TOTAL: " + dano2 + " HP");
+                if(dano2 == 0){
                     GamerOver();
                 }
             }
 
 
             else if(opcao2 == 02 || opcao2 == 2){
-                dano = Jogador.hp - 25;
-
+                dano2 = dano - 25;
+                System.out.println("Consequência: Thomas aprende muito rápido a usar o"
+                        + " blaster e apesar de levar um certo dano consegue atingir os"
+                        + " seus adversários. ");
+                System.out.println("TOTAL: " + dano2 + " HP");
                 if(dano == 0){
                     GamerOver();
                 }
@@ -682,9 +688,11 @@ public class Main {
             }
 
             else if (opcao2 == 03 || opcao2 == 3){
-                dano = Jogador.hp - 49;
-
-                if(dano == 0){
+                dano2 = dano - 49;
+                System.out.println("Consequência: Thomas acaba com todos"
+                        + " os agentes porém também é acertado pelo raio da explosão");
+                System.out.println("TOTAL: " + dano2 + " HP");
+                if(dano2 == 0){
                     GamerOver();
                 }
 
@@ -696,6 +704,8 @@ public class Main {
             
 
         }
+
+
 
         public static void GamerOver() {
             System.out.println("GAMER OVER!!");
