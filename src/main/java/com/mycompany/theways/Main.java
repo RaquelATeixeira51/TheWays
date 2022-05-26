@@ -397,7 +397,11 @@ public class Main {
                 System.out.println("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
                 System.out.println(
                         "\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao espaço tempo ...");
-                GamerOver();
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                Estrutura.qualquerCoisaParaContinuar();
+                System.out.println("");
+                decisao1_1();
                 break;
 
             case 2:
@@ -428,7 +432,11 @@ public class Main {
             case 1:
                 System.out.println(
                         "\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
-                GamerOver();
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                Estrutura.qualquerCoisaParaContinuar();
+                System.out.println("");
+                decisao1_2();
                 break;
 
             case 2:
@@ -443,7 +451,11 @@ public class Main {
 
                 System.out.println(
                         "\nMais veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
-                GamerOver();
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                Estrutura.qualquerCoisaParaContinuar();
+                System.out.println("");
+                decisao1_2();
                 break;
 
             case 3:
@@ -509,11 +521,9 @@ public class Main {
                 System.out.println("Thomas é fuzilado por todos os agentes do local, pois, na entrada havia um"
                         + "\nscanner biométrico que revelou sua identidade.");
                 System.out.println("");
-                System.out.println("GAME OVER!!!!");
+                System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
-                Estrutura.qualquerCoisaParaContinuar();
-                System.out.println("");
-                Estrutura.menuPrincipal();
+                decisao2_2();
 
                 break;
 
@@ -522,11 +532,9 @@ public class Main {
                         "Thomas já andou muito e não se alimentou, perdendo as forças acaba caindo de uma certa"
                                 + "\naltura da escada e morrendo espatifado no chão.");
                 System.out.println("");
-                System.out.println("GAME OVER!!!!");
+                System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
-                Estrutura.qualquerCoisaParaContinuar();
-                System.out.println("");
-                Estrutura.menuPrincipal();
+                decisao2_2();
                 break;
 
             case 3:
@@ -569,11 +577,9 @@ public class Main {
             case 2:
                 System.out.println("No caminho de volta Thomas é pego pelos agentes.");
                 System.out.println("");
-                System.out.println("GAME OVER!!!!");
+                System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
-                Estrutura.qualquerCoisaParaContinuar();
-                System.out.println("");
-                Estrutura.menuPrincipal();
+                decisao2_3();
                 break;
 
             }
@@ -602,13 +608,23 @@ public class Main {
                 System.out.println("- Droga, vocês não podem fazer isso comigo! AAAAAAAAAAH");
                 System.out.println(
                         "Os agentes jogam Thomas no buraco de minhoca e o vêem ser destroçado em mil pedaços se perdendo pelo tempo.");
-                GamerOver();
+                System.out.println("");
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                Estrutura.qualquerCoisaParaContinuar();
+                System.out.println("");
+                decisao3_1();
                 break;
 
             case 3:
                 System.out.println(
                         "Mas que porcaria eu não quero morrer, AAAAAAH que se dane essa porcaria, BUUUUUM!\nThomas ao chutar a máquina a sobrecarrega e não apenas se mata como leva o quarteirão inteiro a ser sugado pelo buraco de minhoca.");
-                GamerOver();
+                System.out.println("");
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                Estrutura.qualquerCoisaParaContinuar();
+                System.out.println("");
+                decisao3_1();
                 break;
 
             }
@@ -627,18 +643,22 @@ public class Main {
             int dano = 0;
             int dano2 = 0;
 
-            // Danos 01
+            // Dano 01
             if (opcao == 1 || opcao == 01) {
-                System.out.println("sofro um certo dano, mas consigo aguentar.");
+                System.out.println("sofro muito dano e acabo morrendo.");
 
-                dano = Jogador.hp - 50;
+                dano = Jogador.hp - 150;
                 System.out.println("TOTAL: " + dano + " HP");
+                System.out.println("");
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");CombateFinal();
+                
 
             }
 
             else if (opcao == 02 || opcao == 2) {
                 System.out.println("Consequência:  porém, ele está muito perto e me atingi também.");
-                dano = Jogador.hp - 75;
+                dano = Jogador.hp - 50;
                 
                 System.out.println("TOTAL: " + dano + " HP");
             }
@@ -647,70 +667,14 @@ public class Main {
                 System.out.println(
                         "Consequência: A morte total de Thomas. Ele não tem condicionamento físico o suficiente.");
                 dano = Jogador.hp - 150;
-                GamerOver();
+                System.out.println("TOTAL: " + dano + " HP");
+                System.out.println("");
+                System.out.println("GAME OVER! Tente outra opção...");
+                System.out.println("");
+                CombateFinal();
 
             }
 
-            
-
-            //Dano 02
-
-            System.out.println("Em uma distância segura, atiro em direção aos agentes. Consigo acertar dois deles e um vem correndo em minha direção. Pego uma cadeira como escudo e revido aos seus ataques, porém, ele é muito forte e me derruba no chão. Tento levantar rápido, mas ele continua batendo. Descubro então uma solução, aproveito sua distração momentânea e jogo o balde de tinta nele.");
-
-
-            System.out.println("O que devo fazer?");
-            System.out.println(" (1) Aproveito seu estresse e bato com o blaster na sua cabeça");
-            System.out.println(" (2) Tento dar um tiro de blaster");
-            System.out.println(" (3) Thomas sobrecarrega o blaster e o joga como uma bomba.");
-            int opcao2 = Estrutura.leiaInput("->", 3);
-
-            if(opcao2 == 1 || opcao2 == 01){
-                dano2 = dano - 75;
-                System.out.println("Consequência Thomas é brilhante mas não tem tanta"
-                        + " força, logo seu ataque não faz quase dano nenhum ao agente.");
-                System.out.println("TOTAL: " + dano2 + " HP");
-                if(dano2 == 0){
-                    GamerOver();
-                }
-            }
-
-
-            else if(opcao2 == 02 || opcao2 == 2){
-                dano2 = dano - 25;
-                System.out.println("Consequência: Thomas aprende muito rápido a usar o"
-                        + " blaster e apesar de levar um certo dano consegue atingir os"
-                        + " seus adversários. ");
-                System.out.println("TOTAL: " + dano2 + " HP");
-                if(dano == 0){
-                    GamerOver();
-                }
-
-            }
-
-            else if (opcao2 == 03 || opcao2 == 3){
-                dano2 = dano - 49;
-                System.out.println("Consequência: Thomas acaba com todos"
-                        + " os agentes porém também é acertado pelo raio da explosão");
-                System.out.println("TOTAL: " + dano2 + " HP");
-                if(dano2 == 0){
-                    GamerOver();
-                }
-
-            }
-
-            Estrutura.qualquerCoisaParaContinuar();
-            
-
-            
-
-        }
-
-
-
-        public static void GamerOver() {
-            System.out.println("GAMER OVER!!");
-            Estrutura.qualquerCoisaParaContinuar();
-            Estrutura.menuPrincipal();
 
         }
 
@@ -794,7 +758,6 @@ public class Main {
             System.out.println(
                     "Finalmente entro em meu laboratório e noto algumas diferenças. Um grande buraco de minhoca está estabilizado na máquina do tempo. Reparo que os agentes estavam utilizando a máquina que criei como um artifício para viajar no tempo como se fosse propriedade deles, isso me enoja.\nComeço a ouvir barulhos de passos próximos a mim. Olho ao redor e sinto a presença próxima dos agentes.");
 
-            Estrutura.qualquerCoisaParaContinuar();
 
             // Decisão 04
             decisao3_1();
@@ -805,7 +768,6 @@ public class Main {
             //Final história
             System.out.println ("Finalmente em “paz” leio minhas anotações. Percebo onde estava errando esse tempo todo: Havia esquecido uma vincular na conta. Se fosse em outros tempos com certeza ficaria revoltado, mas neste momento estou feliz de encontrar uma solução para tratar meu problema.\nApós ligar, entro na máquina com um sorriso no rosto. Logo estaria com a minha família, veria Hugo e Alex após muito tempo. Quem sabe agora teria tempo para viajar com eles e conhecer o mundo inteiro. Poderia ver a evolução dos dois em meus últimos dias de vida…\nDe repente sinto minha cabeça doendo, seria apenas uma consequência da viajar? Essa dor se intensifica até que eu durma.\nAcordo no outro dia com meu bisneto chamado… Ele repetia várias vezes de uma moça chamada Alex. Nunca conheci alguém com esse nome. Deixo ele falando e vou até meu laboratório, preciso fazer minha máquina do tempo funcionar.");
 
-            Estrutura.qualquerCoisaParaContinuar();
 
             Historia.Final();
 
