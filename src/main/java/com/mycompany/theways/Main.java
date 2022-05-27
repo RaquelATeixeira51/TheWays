@@ -524,16 +524,15 @@ public class Main {
                     Estrutura.qualquerCoisaParaContinuar();
                     Historia.Final();
                     break;
-                   
-        }
-    }
+                }
+            }
 
         }
-    }
-        }
-    
 
-    public static class Futuro {
+
+    }
+
+    public static class Futuro{
 
         // Escolhas dos usuários fase 01
         public static void decisao1_1() {
@@ -930,3 +929,4 @@ public class Main {
 
     }
 
+}
