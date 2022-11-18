@@ -169,33 +169,46 @@ public class Main {
         }
 
         public static void criaOrganizaArquivo(int[] organizar, String p) throws IOException{
-            Path path = Path.of("C:\\teste\\teste.txt");//local que o arquivo vai ser criado
+             Path path = Path.of("C:\\teste\\teste.txt");//local que o arquivo vai ser criado
         
-            String Pontos = Files.readString(path);//ler o que ja tem no ranking do arquivo
-            String Placar = p;//a nova pontuação vai entrar aqui, tb to usando o "300" so para teste
-            if(Files.exists(path))
-                Files.delete(path);//deleta o arquivo depois de abrir para nao duplicar
-            
+            //String Pontos = Files.readString(path);//ler o que ja tem no ranking do arquivo
             if(Files.notExists(path))
                 Files.createFile(path);//cria o arquivo
-            
-            int n = organizar.length; 
-            int a = 0;  
-             for(int i=0; i < n; i++){  
-                     for(int j=1; j < (n-i); j++){  
-                              if(organizar[j-1] > organizar[j]){  
-                                     //Organizando com o bubble short que o prof pediu 
-                                     a = organizar[j-1];  
-                                     organizar[j-1] = organizar[j];  
-                                     organizar[j] = a;  
-                             }  
-                              
-                     }  
-             }  
-    
-            String texto = Pontos + Placar;
 
-            Files.writeString(path, texto);
+            List<String> pontos = Files.readAllLines(path);
+
+            String teste[] = pontos.toArray(new String[10]);
+            int org[] = new int[10];
+            for(int i = 0; i < 10; i++){
+                if(teste[i] == null)
+                    org[i] = 0;
+                else
+                    org[i] = Integer.parseInt(teste[i]);
+            }
+           int ps = jogador.getPontuação();
+           org[9] = ps;
+           int n = 10; 
+                int a = 0;  
+                 for(int i=0; i < n; i++){  
+                         for(int j=1; j < (n-i); j++){  
+                                  if(org[j-1] > org[j]){  
+                                         //Organizando com o bubble short que o prof pediu 
+                                         a = org[j-1];  
+                                         org[j-1] = org[j];  
+                                         org[j] = a;  
+                                 }  
+
+                         }  
+                 } 
+           
+           String fim = ""; 
+           for(int i = 0; i < 10; i++){
+               fim = org[i] + "\n" + fim;
+           }
+
+           Files.writeString(path, fim);
+       
+
         }
 
         public static int adicionarPontuacao(int p){
