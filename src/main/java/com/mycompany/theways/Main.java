@@ -5,20 +5,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  *
  * @author 014653631
  */
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         Estrutura.startaGame();
     }
 
     static Jogador jogador;
     static boolean fimDeJogo = false;
     static String resumo;
-    static String pontuacoes[] = new String[10];
+    static int pontuacoes[] = new int[10];
 
     public static class Estrutura {
         static Scanner entrada = new Scanner(System.in);
@@ -56,7 +59,7 @@ public class Main {
             entrada.next();
         }
 
-        public static void jogar() {
+        public static void jogar() throws IOException {
             boolean setouNome = false;
             // Pegando o nome do jogador
             do {
@@ -115,7 +118,7 @@ public class Main {
             qualquerCoisaParaContinuar();
         }
 
-        public static void menuPrincipal() {
+        public static void menuPrincipal() throws IOException {
             int input;
             boolean jogando = false;
             boolean sair = false;
@@ -151,7 +154,7 @@ public class Main {
 
         }
 
-        public static void startaGame() {
+        public static void startaGame() throws IOException {
             // Titulo
             separador(1);
             System.out.println("THE WAYS");
@@ -165,6 +168,45 @@ public class Main {
 
         }
 
+        public static void criaOrganizaArquivo(int[] organizar, String p) throws IOException{
+            Path path = Path.of("C:\\teste\\teste.txt");//local que o arquivo vai ser criado
+        
+            String Pontos = Files.readString(path);//ler o que ja tem no ranking do arquivo
+            String Placar = p;//a nova pontuação vai entrar aqui, tb to usando o "300" so para teste
+            if(Files.exists(path))
+                Files.delete(path);//deleta o arquivo depois de abrir para nao duplicar
+            
+            if(Files.notExists(path))
+                Files.createFile(path);//cria o arquivo
+            
+            int n = organizar.length; 
+            int a = 0;  
+             for(int i=0; i < n; i++){  
+                     for(int j=1; j < (n-i); j++){  
+                              if(organizar[j-1] > organizar[j]){  
+                                     //Organizando com o bubble short que o prof pediu 
+                                     a = organizar[j-1];  
+                                     organizar[j-1] = organizar[j];  
+                                     organizar[j] = a;  
+                             }  
+                              
+                     }  
+             }  
+    
+            String texto = Pontos + Placar;
+
+            Files.writeString(path, texto);
+        }
+
+        public static int adicionarPontuacao(int p){
+            for (int i = 0; i < pontuacoes[i]; i++ ) {
+                if ( pontuacoes[i] == 0 ) {
+                  pontuacoes[i] = p;
+                  return i;
+                }
+            }
+            return -1;
+          }
     }
      
      public static class Jogador{
@@ -276,6 +318,10 @@ public class Main {
         public void tiraPontuacao(int pontuacao){
             this.pontuacao = this.pontuacao - pontuacao;
         }
+
+        public void zeraPontuacao(){
+            this.pontuacao = 0;
+        }
         public void incrementaPontuacao(int pontuacao){
             this.pontuacao = this.pontuacao + pontuacao;
         }
@@ -292,7 +338,7 @@ public class Main {
             Estrutura.qualquerCoisaParaContinuar();
         }
 
-        public static void Final() {
+        public static void Final() throws IOException {
             Estrutura.cabecalho("THE END");
             System.out.println("Thomas se encontra em seu laboratório novamente, porém, por conta de todo ocorrido dos últimos tempos, sua memória acabou se fragmentando fazendo-o esquecer de algumas coisas.\nHugo adentra seu local de trabalho feliz por finalmente ter reencontrado seu avô, e emocionado pergunta sobre sua mãe adotiva: Vô, onde está mamãe?\nThomas um pouco confuso responde: Sua mãe não está mais entre nós a um tempo...\nE Hugo rebate: Estou falando a Alex... \nE por fim Thomas devolve a pergunta: Quem é Alex?");
             Estrutura.qualquerCoisaParaContinuar();
@@ -303,11 +349,15 @@ public class Main {
             fimDeJogo = true;
             
             Estrutura.cabecalho("RANKING");
+            Estrutura.adicionarPontuacao(jogador.getPontuação());
+            String p = Integer.toString(jogador.getPontuação());
+            Estrutura.criaOrganizaArquivo(pontuacoes, p);
+            jogador.zeraPontuacao();
         }
     }
 
     public static class Presente {
-        public static void PrimeiroAto(){
+        public static void PrimeiroAto() throws IOException{
             Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
             System.out.println("Você está no presente.");
@@ -330,13 +380,16 @@ public class Main {
 
                     switch(input){
                         case 1:
+                        jogador.incrementaPontuacao(100);
                         SegundoAto();
                         jogoSegue=true;
                         break;
                         case 2:
+                        jogador.tiraPontuacao(25);
                         System.out.println("Tento brigar com os agentes, mas por minha pouca força acabo sendo pego e me levam embora.\nGAME OVER.");
                         break;
                         case 3:
+                        jogador.tiraPontuacao(15);
                         System.out.println("Tento conversar com os agentes sobre o desaparecimento de minha família, mas acabam me levando para um intenso interrogatório.\nGAME OVER.");
                         break;
                 }
@@ -344,7 +397,7 @@ public class Main {
             }
         }
 
-        public static void SegundoAto() {
+        public static void SegundoAto() throws IOException {
             Estrutura.cabecalho("SEGUNDO ATO");
             System.out.println("Ao me esconder embaixo da mesa, ouço sobre o ocorrido de dias atrás com meu bisavô e minha tia.\n\n Agente 1:  Nunca vi nada desse tipo... \n\n Agente 2 : Todos os radares de energia dispararam! \n\n Agente 3: Ficaram sabendo? Um dos procurados foi para o futuro e outro para o passado. \n\n");
             System.out.println("Chefe do FBI: Agentes, isso não pode sair deste laboratório. Os agentes do tempo já estão atrás dos responsáveis. Vamos aguardar e ver se achamos alguma evidência do que ocorreu aqui.");
@@ -362,12 +415,15 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(25);
                     System.out.println("Infelizmente você não era rápido como pensava, haviam muitos agentes e conseguiram te capturar.\nGAME OVER.");
                     break;
                     case 2:
+                    jogador.tiraPontuacao(15);
                     System.out.println("O tiro saiu pela culatra! Hugo não foi sorrateiro o suficiente ao pegar a arma do agente, e em um momento de susto o agente saca a arma e atira nele.\nGAME OVER.");
                     break;
                     case 3:
+                    jogador.incrementaPontuacao(100);
                     TerceiroAto();
                     jogoSegue=true;
                     break;
@@ -375,7 +431,7 @@ public class Main {
             }
         }
 
-        public static void TerceiroAto() {
+        public static void TerceiroAto() throws IOException {
             Estrutura.cabecalho("TERCEIRO ATO");
             System.out.println("Consegui sair com sucesso pelo esgoto, mas durante minha caminhada procurando a saída do prédio penso na frase que um dos agentes falou sobre um de meus familiares ter ido pro passado.\nMinha característica é ser esperto apesar da pouca idade e em uma tentativa de salvar minha família, penso em procurar alguma pista em um livro de história.");
             Estrutura.qualquerCoisaParaContinuar();
@@ -393,12 +449,15 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(15);
                     System.out.println("Apesar de querer encontrar muito minha tia, eu não sabia se ficava aliviado ou desesperado por não conter nada sobre ela no livro. Infelizmente continuo sem pistas e desisto da busca.\nGAME OVER.");
                     break;
                     case 2:
+                    jogador.incrementaPontuacao(100);
                     jogoSegue=true;
                     break; 
                     case 3:
+                    jogador.tiraPontuacao(25);
                     System.out.println("Apesar de minha tia ter o perfil para se encaixar naquele livro com facilidade, não havia nada sobre ela. Continuo sem pistas e cansado acabo desistindo da procura.\nGAME OVER.");
                     break;
                 }
@@ -419,15 +478,18 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(25);
                     System.out.println("Acerto o rosto do agente porém não forte o suficiente para fazer ele me soltar.\nGAME OVER.");
                     break;
                     case 2:
+                    jogador.incrementaPontuacao(100);
                     System.out.println("Assim que consigo me desvencilhar do agente, corri para o bueiro pelo qual saíra da última vez.\nEnquanto caminho pelos esgotos, me questiono sobre o que poderia encontrar.\nAlgo estaria diferente? Estaria tudo igual?");
                     jogoSegue2=true;
                     Estrutura.qualquerCoisaParaContinuar();
                     Historia.Final();
                     break;
                     case 3:
+                    jogador.tiraPontuacao(15);
                     System.out.println("Me debato e tento soltar os dedos do agente que estavam em meu pescoço, mas ele era muito forte.\nGAME OVER.");
                     break;
                 }
@@ -436,7 +498,7 @@ public class Main {
     }
 
     public static class Passado {
-        public static void PrimeiroAto() {
+        public static void PrimeiroAto() throws IOException {
             Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
                 System.out.println("você está no passado");
@@ -460,14 +522,17 @@ public class Main {
 
                     switch(input){
                         case 1:
+                        jogador.incrementaPontuacao(100);
                         System.out.println("Estamos em Sallen em 1619, e você apenas surgiu aqui do nada como se fosse bruxaria!");
                         SegundoAto();
                         jogoSegue=true;
                         break;
                         case 2:
+                        jogador.tiraPontuacao(15);
                         System.out.println("Sua ação gerou revolta na população que começou a lhe apedrejar causando sua morte. \nGAME OVER.");
                         break;
                         case 3:
+                        jogador.tiraPontuacao(25);
                         System.out.println("Sua ação assustou a população que com seus “gadanhos” a mutilaram.\nGAME OVER.");
                         break;
                 }
@@ -475,7 +540,7 @@ public class Main {
             }
         }
 
-        public static void SegundoAto() {
+        public static void SegundoAto() throws IOException {
             Estrutura.cabecalho("SEGUNDO ATO");
             System.out.println("Suas mãos e pés foram amarradas e vc foi arrastada ate a cadeia.");
             Estrutura.qualquerCoisaParaContinuar();
@@ -494,14 +559,17 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(15);
                     System.out.println("(vem o guarda sem entender as gírias e algumas palavras gritado pela moça, acredita que está sendo amaldiçoado e para impedi-la corta sua garganta com a espada.\nGAME OVER.");
                     break;
                     case 2:
+                    jogador.incrementaPontuacao(100);
                     System.out.println("vc recolhe um grande pedaço de vidro, o guarda surge com o barulho ao entrar na cela para verificar vc o golpeia com o vidro e foge.");
-                    TerceiroAto();
                     jogoSegue=true;
+                    TerceiroAto();
                     break;
                     case 3:
+                    jogador.tiraPontuacao(25);
                     System.out.println("(após algum tempo um guarda percebe sua ausência e desesperado ele vai averiguar a cela,depois de minutos se assustando com a aparição repentina seguida de uma tentativa de fuga o guarda a golpeia no rosto perfurando seu olho com uma espada\nGAME OVER!");
                    
                     break;
@@ -509,7 +577,7 @@ public class Main {
             }
         }
 
-        public static void TerceiroAto() {
+        public static void TerceiroAto() throws IOException {
             Estrutura.cabecalho("TERCEIRO ATO");
             System.out.println("Ao sair da cadeia e ir o mais distante possível encontra uma pacata loja de roupas e tem a ideia de se afeiçoar as pessoas e esconder suas tatuagens");
             Estrutura.qualquerCoisaParaContinuar();
@@ -527,12 +595,15 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(25);
                     System.out.println("Você deixou seus braços a mostra, iram ver suas tatuagens\nTENTE NOVAMENTE.");
                     break;
                     case 2:
+                    jogador.tiraPontuacao(15);
                     System.out.println("Você escolheu vestimentas que não correspondem com o seu gênero e idade, coifa só era utilizado por crianças e idosos,você seria descoberta\nTENTE NOVAMENTE");
                     break; 
                     case 3:
+                    jogador.incrementaPontuacao(100);
                     System.out.println("Ótima escolha!! Você se vestiu a caráter,devido aos maus olhos da sociedade,você conseguiu cobrir suas tatuagens e se afeiçoar as pessoas da época");
                     jogoSegue=true;
                     break;
@@ -555,9 +626,11 @@ public class Main {
             switch(input){
                     case 1:
                     System.out.println("me acompanhe, após um periodo de caminhada elas chegam numa humilde cabana onde passam a conversar percebendo que já era tarde da noite desconhecida enfatiza “ohhh meu Deus, precisamos dormir que amanhã você entenderá tudo!!)");
+                    jogador.incrementaPontuacao(100);
                     jogoSegue=true;
                     break;
                     case 2:
+                    jogador.tiraPontuacao(25);
                     System.out.println("(Continua vagando sem rumo, ao anoitecer se depara com um grupo de homens que na tentativa de rouba-la a ferem e vc morre agonizando perdendo sangue (Continua vagando sem rumo, ao anoitecer se depara com um grupo de homens\n que na tentativa de rouba-la a ferem e vc morre agonizando perdendo sangue \ngame over");
                     break;
                 }
@@ -579,12 +652,15 @@ public class Main {
 
                 switch(input){
                     case 1:
+                    jogador.tiraPontuacao(25);
                     System.out.println("(saiu pela janela e foi alvejada por flechas flamejantes\nGAME OVER.");
                     break;
                     case 2:
+                    jogador.tiraPontuacao(15);
                     System.out.println("vc passa um tempo no porão a cabana é consumida pelo fogo e desmorona sobre\n vc, ocasionando seu soterramento\nGAME OVER");
                     break;
                     case 3:
+                    jogador.incrementaPontuacao(100);
                     System.out.println("você se arma com um castiçal e sai para o confronto, porém são muitos revoltados\n que a capturam-na e a queimam.\nGAME OVER.");
                     Estrutura.qualquerCoisaParaContinuar();
                     Historia.Final();
@@ -615,6 +691,7 @@ public class Main {
                 System.out.println("\nAceito a ajuda da criança, o que? Espere… não é uma  criança!");
                 System.out.println(
                         "\nA criança mostra sua verdadeira forma se apresentando como um agente do FBI do futuro camuflado, no qual o objetivo é eliminar os seres humanos que sejam uma possível ameaça ao espaço tempo ...");
+                jogador.tiraPontuacao(25);
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
                 Estrutura.qualquerCoisaParaContinuar();
@@ -627,6 +704,7 @@ public class Main {
                 System.out.println("----------------------------------------------");
                 System.out.println(
                         "\nDeixo a criança para trás e sigo meu caminho, não existem motivos para confiar em um totalmente estranho, mesmo que seja uma criança.");
+                jogador.incrementaPontuacao(100);
                 Estrutura.qualquerCoisaParaContinuar();
                 break;
             }
@@ -650,6 +728,7 @@ public class Main {
                         "\nEm alerta, corro do agente. Entro em meio a multidão com toda a velocidade que consigo. Isso infelizmente acaba não sendo o suficiente para escapar e o agente do tempo consegue me alcançar.");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(25);
                 Estrutura.qualquerCoisaParaContinuar();
                 System.out.println("");
                 decisao1_2();
@@ -669,6 +748,7 @@ public class Main {
                         "\nMais veloz que o tempo, sinto um tiro atingido meu peito. De repente tudo fica escuro...");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(15);
                 Estrutura.qualquerCoisaParaContinuar();
                 System.out.println("");
                 decisao1_2();
@@ -677,6 +757,7 @@ public class Main {
             case 3:
                 System.out.println(
                         "\nConsigo despistar o agente e após conseguir uma certa distância de nosso último local de encontro começo a procurar onde estaria o meu laboratório...");
+                jogador.incrementaPontuacao(100);
                 break;
 
             }
@@ -717,6 +798,7 @@ public class Main {
                                 + "\nde meu laboratório, sei que ele ainda existe. Vejo que está na mesma região, porém, visto como um lugar"
                                 + "\ninterditado e controlado pelo FBI. Só me resta uma opção: conheço todas as rotas de fuga do prédio, chegou"
                                 + "\na hora de usar esses conhecimentos.");
+                jogador.incrementaPontuacao(100);
                 Estrutura.qualquerCoisaParaContinuar();
                 break;
 
@@ -739,6 +821,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(25);
                 decisao2_2();
 
                 break;
@@ -750,6 +833,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(15);
                 decisao2_2();
                 break;
 
@@ -760,7 +844,7 @@ public class Main {
                                 + " a chave…");
 
                 Estrutura.qualquerCoisaParaContinuar();
-
+                jogador.incrementaPontuacao(100);
                 System.out.println(
                         "Procuro a chave rebatendo minhas mãos em meu corpo, percebo que elas estão em minhas roupas antigas"
                                 + "\nque havia trocado. Ao substituir as roupas novas acabei deixando as antigas na loja, o que me irrita, como um"
@@ -785,6 +869,7 @@ public class Main {
                         + "\nOs agentes abrem a porta e rodam o esgoto me procurando. Como nunca tiveram naquele lugar, ao se separarem "
                         + "\nconsigo atravessar a porta e corro até meu laboratório.");
                 System.out.println("");
+                jogador.incrementaPontuacao(100);
                 Estrutura.qualquerCoisaParaContinuar();
                 System.out.println("");
 
@@ -795,6 +880,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(15);
                 decisao2_3();
                 break;
 
@@ -814,6 +900,7 @@ public class Main {
 
             switch (escolha) {
             case 1:
+            jogador.incrementaPontuacao(100);
                 break;
 
             case 2:
@@ -826,6 +913,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(15);
                 Estrutura.qualquerCoisaParaContinuar();
                 System.out.println("");
                 decisao3_1();
@@ -837,6 +925,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(15);
                 Estrutura.qualquerCoisaParaContinuar();
                 System.out.println("");
                 decisao3_1();
@@ -857,7 +946,7 @@ public class Main {
             // Dano 01
             if (opcao == 1 || opcao == 01) {
                 System.out.println("sofro muito dano e acabo morrendo.");
-
+                jogador.tiraPontuacao(100);
                 jogador.tiraHp(150);
                 System.out.println("TOTAL: " + jogador.getHp() + " HP");
                 System.out.println("");
@@ -871,7 +960,7 @@ public class Main {
             else if (opcao == 02 || opcao == 2) {
                 System.out.println("Consequência:  porém, ele está muito perto e me atingi também.");
                 jogador.tiraHp(50);
-                
+                jogador.incrementaPontuacao(50);
                 System.out.println("TOTAL: " + jogador.getHp() + " HP");
             }
 
@@ -883,6 +972,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("GAME OVER! Tente outra opção...");
                 System.out.println("");
+                jogador.tiraPontuacao(100);
                 jogador.incrementaHp(150);
                 CombateFinal();
 
@@ -891,7 +981,7 @@ public class Main {
 
         }
 
-        public static void PrimeiroAto() {
+        public static void PrimeiroAto() throws IOException {
             Estrutura.cabecalho("PRIMEIRO ATO");
             Estrutura.cabecalho("CENÁRIO ATUAL");
             System.out.println("você está no futuro");
@@ -946,7 +1036,7 @@ public class Main {
             SegundoAto();
         }
 
-        public static void SegundoAto() {
+        public static void SegundoAto() throws IOException {
             Estrutura.cabecalho("SEGUNDO ATO");
             Estrutura.qualquerCoisaParaContinuar();
             System.out.println(
@@ -963,7 +1053,7 @@ public class Main {
             TerceiroAto();
         }
 
-        public static void TerceiroAto() {
+        public static void TerceiroAto() throws IOException {
             Estrutura.cabecalho("TERCEIRO ATO");
             Estrutura.qualquerCoisaParaContinuar();
 
