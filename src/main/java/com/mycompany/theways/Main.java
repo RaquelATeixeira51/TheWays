@@ -200,10 +200,13 @@ public class Main {
 
                          }  
                  } 
-           
+           System.out.println("RANKING\n");
            String fim = ""; 
+           int j = 9;
            for(int i = 0; i < 10; i++){
                fim = org[i] + "\n" + fim;
+               System.out.println(org[j]);
+               j--;
            }
 
            Files.writeString(path, fim);
