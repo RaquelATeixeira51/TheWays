@@ -169,7 +169,7 @@ public class Main {
         }
 
         public static void criaOrganizaArquivo(int[] organizar, String p) throws IOException{
-             Path path = Path.of("C:\\teste\\teste.txt");//local que o arquivo vai ser criado
+             Path path = Path.of("C:\\Pontuacao\\pontuacao.txt");//local que o arquivo vai ser criado
         
             //String Pontos = Files.readString(path);//ler o que ja tem no ranking do arquivo
             if(Files.notExists(path))
